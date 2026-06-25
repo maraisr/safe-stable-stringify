@@ -162,13 +162,15 @@ indentation:   deep circular x 16,443 ops/sec ±0.40% (97 runs sampled)
 Comparing `safe-stable-stringify` with known alternatives:
 
 ```md
-fast-json-stable-stringify x 18,765 ops/sec ±0.71% (94 runs sampled)
-json-stable-stringify x 13,870 ops/sec ±0.72% (94 runs sampled)
-fast-stable-stringify x 21,343 ops/sec ±0.33% (95 runs sampled)
-faster-stable-stringify x 17,707 ops/sec ±0.44% (97 runs sampled)
-json-stringify-deterministic x 11,208 ops/sec ±0.57% (98 runs sampled)
-fast-safe-stringify x 21,460 ops/sec ±0.75% (99 runs sampled)
-this x 30,367 ops/sec ±0.39% (96 runs sampled)
+fastest-stable-stringify x 53,720 ops/sec (11 runs sampled)
+fast-json-stable-stringify x 48,530 ops/sec (11 runs sampled)
+json-stable-stringify x 38,123 ops/sec (11 runs sampled)
+fast-stable-stringify x 54,064 ops/sec (12 runs sampled)
+faster-stable-stringify x 47,958 ops/sec (10 runs sampled)
+json-stringify-deterministic x 35,306 ops/sec (10 runs sampled)
+fast-safe-stringify x 44,133 ops/sec (10 runs sampled)
+object-identity x 103,553 ops/sec (13 runs sampled)
+this x 48,175 ops/sec (11 runs sampled)
 
 The fastest is this
 ```

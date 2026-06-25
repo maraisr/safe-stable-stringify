@@ -13,22 +13,29 @@ const stringifyPackages = {
   'faster-stable-stringify': true,
   'json-stringify-deterministic': true,
   'fast-safe-stringify': 'stable',
+  'object-identity': import('object-identity').then(m => m.identify),
   'safe-stable-stringify': require('.')
 }
 
-for (const name in stringifyPackages) {
-  let fn
-  if (typeof stringifyPackages[name] === 'function') {
-    fn = stringifyPackages[name]
-  } else if (typeof stringifyPackages[name] === 'string') {
-    fn = require(name)[stringifyPackages[name]]
-  } else {
-    fn = require(name)
-  }
+async function main () {
+  for (const name in stringifyPackages) {
+    let fn
+    if (typeof stringifyPackages[name] === 'function') {
+      fn = stringifyPackages[name]
+    } else if (typeof stringifyPackages[name] === 'string') {
+      fn = require(name)[stringifyPackages[name]]
+    } else if (typeof stringifyPackages[name].then === 'function') {
+      fn = await stringifyPackages[name]
+    } else {
+      fn = require(name)
+    }
 
-  suite.add(name, function () {
-    fn(testData)
-  })
+    suite.add(name, function () {
+      fn(testData)
+    })
+  }
 }
 
-suite.run()
+main().then(function () {
+	suite.run()
+})
